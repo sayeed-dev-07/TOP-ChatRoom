@@ -1,11 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Club Room</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barrio&family=Outfit:wght@300;400;500;600;700&family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+
+        .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .font-brand {
+            font-family: 'Barrio', system-ui;
+        }
+
+        .font-brush {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
 </head>
-<body>
-    
+
+<body
+    class="bg-zinc-100 h-screen w-full sm:p-4 md:p-8 box-border flex items-center justify-center antialiased text-black overflow-hidden selection:bg-yellow-300 selection:text-black">
+
+    <div
+        class="h-full sm:border-l-[3px]  w-full max-w-[1400px] bg-white sm:border-[3px] border-black flex flex-col xl:flex-row sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative">
+
+        <div
+            class="hidden xl:flex flex-col justify-between border-r-[3px] border-black w-24 p-6 shrink-0 bg-white z-10">
+            <div class="font-mono text-sm font-bold tracking-widest">01</div>
+
+            <div class="flex-1 flex items-center justify-center">
+
+                <h1 class="font-brand vertical-text rotate-180 text-5xl font-bold whitespace-nowrap">
+                    Club Room
+                </h1>
+            </div>
+
+            <div class="text-3xl font-black text-black text-center">部<br>室</div>
+        </div>
+
+        <div class="flex-1 flex flex-col relative">
+
+            <header
+                class="h-20 border-b-[3px] border-black flex justify-between items-center px-2.5 sm:px-6 xl:px-10 shrink-0 bg-white/80 backdrop-blur-sm z-10">
+
+                <div class="font-brand text-2xl md:text-3xl font-bold tracking-widest">
+                    ClubRoom
+                </div>
+                <nav class="flex gap-8">
+                    <a href="/log-in"
+                        class="font-mono text-sm font-black px-3 duration-300 ease-out py-1.5 border-2 hover:bg-black hover:text-[#FFE600] border-black uppercase tracking-widest transition-all">Log
+                        in</a>
+                </nav>
+            </header>
+
+            <main class="flex-1 p-4 md:p-8 flex flex-col justify-center z-10">
+                <!-- Mixed fonts in the main header for the artistic effect -->
+                <h2 class="flex flex-col leading-[0.85] mb-8">
+                    <span class="font-brush text-7xl md:text-[7rem] mb-2 transform -rotate-2">Drop</span>
+                    <span
+                        class="font-display text-6xl md:text-[5.5rem] font-black uppercase tracking-tighter">Your</span>
+                    <span
+                        class="font-sans text-6xl md:text-[5.5rem] font-black uppercase tracking-tighter text-transparent wrap-break-word"
+                        style="-webkit-text-stroke: 2px black;">Thoughts.</span>
+                </h2>
+
+                <p
+                    class="max-w-sm text-sm font-medium leading-relaxed text-zinc-600 border-l-[3px] border-[#FFE600] pl-4">
+                    Drop your thoughts, ideas, and musings in our Club Room. A space where your voice matters and your
+                    ideas can flourish. Join us today and be part of a community that values creativity and expression.
+                </p>
+            </main>
+        </div>
+
+        <div
+            class="w-full xl:w-80 flex flex-col border-t-[3px] xl:border-t-0 xl:border-l-[3px] border-black shrink-0 z-10">
+
+            <div class="hidden xl:flex flex-1 border-b-[3px] border-black bg-white items-end p-6">
+                <div class="font-mono w-full text-right text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+                    Created by <a target="_blank" class="font-semibold text-black"
+                        href="https://github.com/sayeed-dev-07">Sayeed</a>
+                </div>
+            </div>
+
+            <div
+                class="h-auto border-b-[3px] xl:border-b-0 xl:h-[45%] bg-[#FFE600] p-8 flex flex-col justify-between relative overflow-hidden group">
+
+                <div
+                    class="absolute -right-4 -bottom-8 text-8xl font-black text-black opacity-10 pointer-events-none transition-transform duration-500 group-hover:scale-110">
+                    入
+                </div>
+
+                <div>
+                    <h3 class="font-display text-3xl font-black uppercase mb-1 tracking-tight">Join</h3>
+                    <p class="font-mono text-xs font-bold uppercase tracking-wider text-black/70">Register an account
+                    </p>
+                </div>
+
+                <a href="/sign-up"
+                    class="mt-12 w-full flex items-center justify-between border-[3px] border-black px-6 py-4 bg-white hover:bg-black hover:text-[#FFE600] transition-colors duration-300 ">
+                    <span class="font-mono font-black uppercase tracking-widest text-sm">Sign Up</span>
+                    <span class="text-xl leading-none">→</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
 </body>
+
 </html>

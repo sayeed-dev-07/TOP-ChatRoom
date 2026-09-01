@@ -6,12 +6,14 @@ CREATE TABLE IF NOT EXISTS users (
    username VARCHAR ( 255 ),
    password VARCHAR ( 255 ),
    is_admin BOOLEAN,
-   is_member BOOLEAN
+   is_member BOOLEAN,
+   first_name VARCHAR ( 255 ),
+   last_name VARCHAR ( 255 ),
 );
 
-INSERT INTO users (username, password, is_admin, is_member) 
+INSERT INTO users (username, password, is_admin, is_member, first_name, last_name) 
 VALUES
-  ('sayeed', '664651', false, false);
+  ('sayeed', '664651', false, false, 'Sayeed', 'Shorif');
 `;
 
 async function main() {

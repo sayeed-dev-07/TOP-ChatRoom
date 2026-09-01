@@ -4,53 +4,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <title>Log-in | Club Room</title>
+
+    <!-- Imported Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barrio&family=Outfit:wght@300;400;500;600;700&family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .font-brand {
+            font-family: 'Barrio', system-ui;
+        }
+
+        .font-brush {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body
+    class="bg-zinc-100 min-h-screen w-full sm:p-4 md:p-8 box-border flex items-center justify-center antialiased text-black selection:bg-black selection:text-white">
 
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Welcome Back</h1>
+    <div
+        class="w-full max-w-[1000px] bg-white sm:border-[3px] border-black flex flex-col md:flex-row sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
 
-        <!-- EJS Logic to display Passport's failure messages -->
-        <% if (locals.messages && locals.messages.length> 0) { %>
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
-                <span class="block sm:inline">
-                    <%= messages[0] %>
-                </span>
+
+        <div
+            class="hidden md:flex flex-col justify-between border-r-[3px] border-black w-24 p-6 shrink-0 bg-[#FFE600] z-10">
+            <div class="font-mono text-sm font-bold tracking-widest text-black/70">02</div>
+
+            <div class="flex-1 flex items-center justify-center">
+                <h1 class="font-brand vertical-text rotate-180 text-5xl font-bold whitespace-nowrap">
+                    Log In
+                </h1>
             </div>
-            <% } %>
 
-                <!-- The form submits a POST request to your /log-in route -->
-                <form action="/log-in" method="POST" class="space-y-4">
+            <div class="text-3xl font-black text-black text-center">入</div>
+        </div>
 
-                    <div>
-                        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                        <input type="text" id="username" name="username" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Enter your username">
+
+        <div class="flex-1 flex flex-col relative bg-white z-10">
+
+            <header
+                class="h-20 border-b-[3px] border-black flex justify-between items-center px-6 md:px-10 shrink-0 bg-white/80 backdrop-blur-sm z-20">
+                <div class="font-brand text-2xl font-bold tracking-widest">
+                    ClubRoom
+                </div>
+                <nav class="flex gap-4">
+                    <a href="/"
+                        class="font-mono text-sm font-black px-3 py-1.5 border-[3px] border-black uppercase tracking-widest hover:bg-black hover:text-white transition-colors duration-300 flex items-center gap-2">
+                        <span>←</span> Home
+                    </a>
+                </nav>
+            </header>
+
+            <main class="flex-1 p-6 md:p-16 flex flex-col justify-center relative">
+
+                <div
+                    class="absolute right-0 bottom-0 text-[15rem] font-black text-black opacity-5 pointer-events-none translate-x-1/4 translate-y-1/4">
+                    部
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="flex flex-col ">
+                        <span
+                            class="font-brand text-5xl -mb-4 md:text-6xl font-black uppercase tracking-tighter">Welcome</span>
+                        <span class="font-brush text-6xl md:text-7xl  transform -rotate-2 text-transparent"
+                            style="-webkit-text-stroke: 2px black;">Back.</span>
+                    </h2>
+                </div>
+
+                <form action="/log-in" method="post" class="w-full max-w-sm flex flex-col gap-6 relative z-10">
+
+                    <div class="flex flex-col gap-2">
+                        <label for="username"
+                            class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-600">Enter your
+                            username:</label>
+                        <input type="text" id="username" name="username" required autocomplete="username"
+                            class="w-full border-[3px] border-black p-4 text-lg font-medium bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-400"
+                            placeholder="ClubMember99">
                     </div>
 
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <input type="password" id="password" name="password" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Enter your password">
+                    <!-- Password Input with Toggle Visibility -->
+                    <div class="flex flex-col gap-2">
+                        <label for="password"
+                            class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-600">Enter your
+                            password:</label>
+
+                        <div class="relative w-full">
+
+                            <input type="password" id="password" name="password" required
+                                class="w-full border-[3px] border-black p-4 pr-14 text-lg font-medium bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-400"
+                                placeholder="••••••••">
+
+
+                            <button type="button" id="togglePassword"
+                                class="absolute inset-y-0 cursor-pointer right-0 px-4 flex items-center justify-center text-zinc-400 hover:text-black transition-colors focus:outline-none"
+                                aria-label="Toggle password visibility">
+
+                                <!-- Eye open icon -->
+                                <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+
+                                <!-- Eye close icon -->
+                                <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" class="w-6 h-6 hidden">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     <button type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                        class="mt-4 w-full bg-black text-[#FFE600] border-[3px] border-black font-mono font-black uppercase tracking-widest text-lg py-4 hover:bg-[#FFE600] hover:text-black hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center justify-center gap-3 group">
                         Log In
+                        <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
                     </button>
-                </form>
 
-                <p class="mt-6 text-center text-sm text-gray-600">
-                    Don't have an account?
-                    <a href="/sign-up" class="text-blue-600 hover:underline font-medium">Create one now</a>
-                </p>
+                    <div class="mt-2 text-center">
+                        <p class="font-mono text-xs font-bold uppercase tracking-widest text-zinc-500">
+                            Don't have a key? <a href="/sign-up"
+                                class="text-black border-b-[2px] border-black hover:text-[#FFE600] hover:bg-black transition-colors px-1">Sign
+                                Up</a>
+                        </p>
+                    </div>
+
+                </form>
+            </main>
+        </div>
     </div>
 
+    <!-- Script to handle password visibility toggle -->
+    <script>
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeOpen = document.getElementById('eyeOpen');
+        const eyeClosed = document.getElementById('eyeClosed');
+
+        togglePasswordBtn.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            eyeOpen.classList.toggle('hidden');
+            eyeClosed.classList.toggle('hidden');
+        });
+    </script>
 </body>
 
 </html>
