@@ -1,7 +1,7 @@
 const { pool } = require('./pool')
 
-const createUser = async (name, password) => {
-    await pool.query('INSERT INTO users(username, password) VALUES($1, $2)', [name, password])
+const createUser = async (username, password, first_name, last_name) => {
+    await pool.query('INSERT INTO users(username, password, first_name, last_name) VALUES($1, $2, $3, $4)', [username, password, first_name, last_name])
 }
 
 const isUnique = async (name) => {

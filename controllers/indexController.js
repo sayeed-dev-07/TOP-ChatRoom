@@ -12,7 +12,7 @@ const getLogInControl = async (req, res) => {
     res.render('login')
 }
 const postLogInControl = passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/chat",
     failureRedirect: "/log-in",
     failureMessage: true,
 })

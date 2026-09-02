@@ -4,33 +4,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sign up</title>
+    <title>Sign Up | Club Room</title>
+
+    <!-- Imported Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barrio&family=Outfit:wght@300;400;500;600;700&family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .font-brand {
+            font-family: 'Barrio', system-ui;
+        }
+
+        .font-brush {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
 </head>
 
-<body>
-    <form action="/sign-up" method="post">
-        <div>
-            <label for="firstName">Enter First Name</label>
-            <input type="text" id="firstName" name="first_name" required>
+<body
+    class="bg-white min-h-screen w-full sm:p-4 md:p-8 box-border flex items-center justify-center antialiased text-black selection:bg-black selection:text-white">
+
+    <div
+        class="w-full max-w-[1000px] bg-white sm:border-[3px] border-black flex flex-col md:flex-row sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden my-8 md:my-0">
+
+        <!-- Column 1: Vertical Branding -->
+        <div
+            class="hidden md:flex flex-col justify-between border-r-[3px] border-black w-24 p-3 shrink-0 bg-[#FFE600] z-10">
+            <div class="font-mono text-sm font-bold tracking-widest text-black/70">03</div>
+
+            <div class="flex-1 flex items-center justify-center">
+                <h1 class="font-brand vertical-text rotate-180 text-5xl font-bold whitespace-nowrap">
+                    Sign Up
+                </h1>
+            </div>
+
+            <!-- Kanji for Record/Register (Roku) -->
+            <div class="text-3xl font-black text-black text-center">録</div>
         </div>
-        <div>
-            <label for="lastName">Enter Last Name</label>
-            <input type="text" id="lastName" name="last_name" required>
+
+        <!-- Column 2: Form Area -->
+        <div class="flex-1 flex flex-col relative bg-white z-10">
+
+            <header
+                class="h-20 border-b-[3px] border-black flex justify-between items-center px-6 md:px-10 shrink-0 bg-white/80 backdrop-blur-sm z-20">
+                <div class="font-brand text-2xl font-bold tracking-widest">
+                    ClubRoom
+                </div>
+                <nav class="flex gap-4">
+                    <a href="/"
+                        class="font-mono text-sm font-black px-3 py-1.5 border-[3px] border-black uppercase tracking-widest hover:bg-black hover:text-white transition-colors duration-300 flex items-center gap-2">
+                        <span>←</span> Home
+                    </a>
+                </nav>
+            </header>
+
+            <main class="flex-1 p-6 md:px-16 md:py-12 flex flex-col justify-center relative">
+
+                <div
+                    class="absolute right-0 bottom-0 text-[15rem] font-black text-black opacity-5 pointer-events-none translate-x-1/4 translate-y-1/4">
+                    録
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="flex flex-col leading-[0.9]">
+                        <span class="font-brand text-4xl md:text-5xl font-black uppercase tracking-tighter">Claim
+                            Your</span>
+                        <span class="font-brush text-5xl -mt-3.5 md:text-6xl transform -rotate-2 text-transparent"
+                            style="-webkit-text-stroke: 2px black;">Space.</span>
+                    </h2>
+                </div>
+
+                <form action="/sign-up" method="post" class="w-full max-w-lg flex flex-col gap-5 relative z-10">
+
+                    <!-- Name Grid (First & Last side-by-side) -->
+                    <div class="flex flex-col sm:flex-row gap-5">
+                        <!-- First Name -->
+                        <div class="flex-1 flex flex-col gap-2">
+                            <label for="firstName"
+                                class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-600">First
+                                Name <span class="text-[crimson]">*</span></label>
+                            <input type="text" id="firstName" name="first_name" required
+                                value="<%= locals.user?.first_name || '' %>"
+                                class="w-full border-[3px] border-black p-3 text-lg font-medium bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-400">
+                            <% if (locals.errors?.first_name) { %>
+                                <div
+                                    class="bg-red-500 text-white font-mono text-[10px] uppercase tracking-wider font-bold p-2 border-[2px] border-black mt-1">
+                                    <%= errors.first_name.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="flex-1 flex flex-col gap-2">
+                            <label for="lastName"
+                                class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-600">Last
+                                Name <span class="text-[crimson]">*</span></label>
+                            <input type="text" id="lastName" name="last_name" required
+                                value="<%= locals.user?.last_name || '' %>"
+                                class="w-full border-[3px] border-black p-3 text-lg font-medium bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-400">
+                            <% if (locals.errors?.last_name) { %>
+                                <div
+                                    class="bg-red-500 text-white font-mono text-[10px] uppercase tracking-wider font-bold p-2 border-[2px] border-black mt-1">
+                                    <%= errors.last_name.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="flex flex-col gap-2">
+                        <label for="username"
+                            class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-600">Choose
+                            Username <span class="text-[crimson]">*</span></label>
+                        <input type="text" id="username" name="username" required
+                            value="<%= locals.user?.username || '' %>"
+                            class="w-full border-[3px] border-black p-3 text-lg font-medium bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-400">
+                        <% if (locals.errors?.username) { %>
+                            <div
+                                class="bg-red-500 text-white font-mono text-[10px] uppercase tracking-wider font-bold p-2 border-[2px] border-black mt-1">
+                                <%= errors.username.msg %>
+                            </div>
+                            <% } %>
+                    </div>
+
+                    <!-- Password Grid -->
+                    <div class="flex flex-col sm:flex-row gap-5">
+                        <!-- Password -->
+                        <div class="flex-1 flex flex-col gap-2">
+                            <label for="password"
+                                class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-600">Password
+                                <span class="text-[crimson]">*</span></label>
+                            <div class="relative w-full">
+                                <input type="password" id="password" name="password" required
+                                    class="w-full border-[3px] border-black p-3 pr-12 text-lg font-medium bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                                <button type="button"
+                                    class="toggle-password cursor-pointer absolute inset-y-0 right-0 px-3 flex items-center justify-center text-zinc-400 hover:text-black transition-colors focus:outline-none"
+                                    data-target="password">
+                                    <svg class="eye-open w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    </svg>
+                                    <svg class="eye-closed w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <% if (locals.errors?.password) { %>
+                                <div
+                                    class="bg-red-500 text-white font-mono text-[10px] uppercase tracking-wider font-bold p-2 border-[2px] border-black mt-1">
+                                    <%= errors.password.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="flex-1 flex flex-col gap-2">
+                            <label for="confirmPassword"
+                                class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-600">Confirm
+                                password<span class="text-[crimson]">*</span></label>
+                            <div class="relative w-full">
+                                <input type="password" id="confirmPassword" name="confirm_password" required
+                                    class="w-full border-[3px] border-black p-3 pr-12 text-lg font-medium bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                                <button type="button"
+                                    class="toggle-password cursor-pointer absolute inset-y-0 right-0 px-3 flex items-center justify-center text-zinc-400 hover:text-black transition-colors focus:outline-none"
+                                    data-target="confirmPassword">
+                                    <svg class="eye-open w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    </svg>
+                                    <svg class="eye-closed w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <% if (locals.errors?.confirm_password) { %>
+                                <div
+                                    class="bg-red-500 text-white font-mono text-[10px] uppercase tracking-wider font-bold p-2 border-[2px] border-black mt-1">
+                                    <%= errors.confirm_password.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="mt-4 w-full cursor-pointer bg-[#FFE600] text-black border-[3px] border-black font-mono font-black uppercase tracking-widest text-lg py-4 hover:bg-black hover:text-[#FFE600] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center justify-center gap-3 group">
+                        Sign Up
+                        <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+
+                    <!-- Login link -->
+                    <div class="mt-2 text-center">
+                        <p class="font-mono text-xs font-bold uppercase tracking-widest text-zinc-500">
+                            Already have a key? <a href="/log-in"
+                                class="text-black border-b-[2px] border-black hover:text-[#FFE600] hover:bg-black transition-colors px-1">Log
+                                In</a>
+                        </p>
+                    </div>
+
+                </form>
+            </main>
         </div>
-        <div>
-            <label for="username">Enter Username</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div>
-            <label for="password">Enter Password</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div>
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirm_password" required>
-        </div>
-        <button type="submit">Sign Up</button>
-    </form>
+    </div>
+
+    <!-- Script to handle multiple password visibility toggles -->
+    <script>
+        const toggleButtons = document.querySelectorAll('.toggle-password');
+
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const passwordInput = document.getElementById(targetId);
+                const eyeOpen = this.querySelector('.eye-open');
+                const eyeClosed = this.querySelector('.eye-closed');
+
+                // Toggle type
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle icons
+                eyeOpen.classList.toggle('hidden');
+                eyeClosed.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 
 </html>
