@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification | Club Room</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barrio&family=Outfit:wght@300;400;500;600;700&family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .font-brand {
+            font-family: 'Barrio', system-ui;
+        }
+
+        .font-brush {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-zinc-50 min-h-screen w-full flex antialiased text-black selection:bg-black selection:text-white overflow-x-hidden">
+
+    <div
+        class="hidden xl:flex flex-col justify-between border-r-[3px] border-black w-24 p-6 shrink-0 bg-[#FFE600] h-screen sticky top-0 z-50">
+        <div class="font-mono text-sm font-bold tracking-widest text-black/70">05</div>
+
+        <div class="flex-1 flex items-center justify-center">
+            <h1 class="font-brand vertical-text rotate-180 text-5xl font-bold whitespace-nowrap">
+                Verify
+            </h1>
+        </div>
+
+        <div class="text-3xl font-black text-black text-center">証</div>
+    </div>
+
+    <div class="flex-1 flex flex-col min-h-screen w-full bg-zinc-50 relative">
+
+        <header
+            class="h-20 border-b-[3px] border-black flex justify-between items-center px-6 xl:px-10 shrink-0 bg-white sticky top-0 z-40">
+            <div class="font-brand text-2xl font-bold tracking-widest">
+                ClubRoom
+            </div>
+            <nav class="flex gap-4">
+                <a href="/chat"
+                    class="font-mono text-sm font-black px-3 py-1.5 border-[3px] border-black uppercase tracking-widest hover:bg-black hover:text-[#FFE600] transition-colors duration-300 flex items-center gap-2">
+                    <span>←</span> Return
+                </a>
+            </nav>
+        </header>
+
+        <main class="flex-1 p-6 xl:p-10 flex flex-col items-center justify-center relative w-full">
+
+            <div
+                class="absolute right-10 bottom-10 text-[20rem] font-black text-black opacity-[0.03] pointer-events-none select-none">
+                証
+            </div>
+
+            <div
+                class="w-full max-w-4xl bg-white border-[3px] border-black flex flex-col xl:flex-row sm:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative z-10 overflow-hidden">
+
+                <div
+                    class="w-full xl:w-1/2 border-b-[3px] xl:border-b-0 xl:border-r-[3px] border-black bg-zinc-100 p-8 flex flex-col items-center justify-center relative">
+
+                    <div class="absolute top-4 left-4 w-4 h-4 border-t-[3px] border-l-[3px] border-black"></div>
+                    <div class="absolute top-4 right-4 w-4 h-4 border-t-[3px] border-r-[3px] border-black"></div>
+                    <div class="absolute bottom-4 left-4 w-4 h-4 border-b-[3px] border-l-[3px] border-black"></div>
+                    <div class="absolute bottom-4 right-4 w-4 h-4 border-b-[3px] border-r-[3px] border-black"></div>
+
+                    <img src="<%= position === 'admin' ? 'https://i.pinimg.com/736x/02/d4/2c/02d42cf89251edc9807ec42b11cb1da7.jpg' : 'https://i.pinimg.com/736x/27/f5/f8/27f5f8baaefe10515e302be0144a8a2e.jpg' %>"
+                        alt="Security Target"
+                        class="w-full max-w-[280px] border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] filter grayscale-[30%] hover:grayscale-0 transition-all duration-500 ease-in-out">
+
+                    <div class="mt-6 font-mono text-xs font-bold uppercase tracking-widest text-zinc-500">
+                        Target Entity Identified
+                    </div>
+                </div>
+
+                <div class="w-full xl:w-1/2 p-3 sm:p-8 xl:p-12 flex flex-col justify-center relative">
+
+                    <% if (userRole) { %>
+
+                        <h2
+                            class="font-display text-3xl sm:text-4xl xl:text-5xl  uppercase tracking-tighter mb-4 leading-none">
+                            Clearance <br> Confirmed.
+                        </h2>
+
+                        <p
+                            class="font-mono text-xs font-bold text-zinc-600 mb-8 border-l-[3px] border-black pl-4 leading-relaxed uppercase tracking-widest">
+                            System records indicate you already hold the <span
+                                class="text-[#FFE600] bg-black px-2 py-1">
+                                <%= position %>
+                            </span> rank. No further verification is required.
+                        </p>
+
+                        <a href="/chat"
+                            class="w-full bg-[#FFE600] text-black border-[3px] border-black font-mono font-black uppercase tracking-widest text-lg py-4 hover:bg-black hover:text-[#FFE600] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center justify-center gap-3 group">
+                            Return to Feed
+                            <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+
+                        <% } else { %>
+
+                            <% if (locals.error) { %>
+                                <div
+                                    class="mb-8 bg-red-500 border-[3px] border-black p-4 text-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transform -rotate-1">
+                                    <h3 class="font-display text-xl font-black uppercase tracking-tight mb-1">⚠ Access
+                                        Denied</h3>
+                                    <p class="font-mono text-xs font-bold tracking-wider">
+                                        <%= locals.error %>
+                                    </p>
+                                    <div
+                                        class="mt-2 pt-2 border-t-[2px] border-red-400 font-mono text-[10px] uppercase text-red-100">
+                                        The room rejects your answer. Try again.
+                                    </div>
+                                </div>
+                                <% } %>
+
+                                    <h2
+                                        class="font-display text-3xl sm:text-4xl xl:text-5xl font-black uppercase tracking-tighter mb-4 leading-none">
+                                        Gate <br> Check.
+                                    </h2>
+
+                                    <p
+                                        class="font-mono text-xs font-bold text-zinc-600 mb-8 border-l-[3px] border-[#FFE600] pl-4 leading-relaxed uppercase tracking-widest">
+                                        To claim the <span class="text-black bg-[#FFE600] px-1">
+                                            <%= position %>
+                                        </span> role, you must prove your knowledge. What is the first name of this
+                                        character?
+                                    </p>
+
+                                    <form action="/<%= position %>" method="POST" class="flex flex-col gap-6 w-full">
+
+                                        <div class="flex flex-col gap-2">
+                                            <label for="answer"
+                                                class="font-mono text-sm font-bold uppercase tracking-widest text-black">Enter
+                                                Passcode</label>
+                                            <input type="text" name="answer" id="answer" required autocomplete="off"
+                                                class="w-full border-[3px] border-black p-4 text-xl font-bold bg-zinc-50 focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-300 font-mono"
+                                                placeholder="First Name...">
+                                        </div>
+
+                                        <button type="submit"
+                                            class="mt-2 w-full bg-black text-[#FFE600] border-[3px] border-black font-mono font-black uppercase tracking-widest text-lg py-4 hover:bg-[#FFE600] hover:text-black hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center justify-center gap-3 group">
+                                            Submit
+                                            <span
+                                                class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                                        </button>
+
+                                    </form>
+
+                                    <% } %>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

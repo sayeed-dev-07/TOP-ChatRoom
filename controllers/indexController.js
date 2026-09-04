@@ -1,7 +1,8 @@
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const { createUser } = require('../db/query')
+const { createUser, beAdmin, beMember } = require('../db/query')
 const { matchedData } = require('express-validator')
+require('dotenv').config()
 
 
 const getHomePage = async (req, res) => {
@@ -9,7 +10,12 @@ const getHomePage = async (req, res) => {
 }
 
 const getLogInControl = async (req, res) => {
-    res.render('login')
+    const messages = req.session.messages || [];
+
+    req.session.messages = [];
+    res.render('login', {
+        errorMessage: messages.length > 0 ? messages[messages.length - 1] : null
+    });
 }
 const postLogInControl = passport.authenticate("local", {
     successRedirect: "/chat",
@@ -34,7 +40,9 @@ const postRegisterControl = async (req, res, next) => {
             username,
             hashedPassword,
             first_name,
-            last_name
+            last_name,
+            false,
+            false
         );
         res.redirect("/log-in");
     } catch (error) {
@@ -43,4 +51,51 @@ const postRegisterControl = async (req, res, next) => {
     }
 }
 
-module.exports = { getLogInControl, postLogInControl, getRegisterControl, postRegisterControl, getHomePage }
+const getAdminForm = (req, res, next) => {
+    res.render('rolechange', {
+        position: 'admin',
+        userRole: req.user.is_admin
+    })
+}
+
+const postAdminForm = async (req, res, next) => {
+    const secrectAnswer = process.env.PASSCODE_ADMIN;
+    const { answer } = req.body;
+    const id = req.user.id;
+    if (answer.toLowerCase().trim() === secrectAnswer) {
+        await beAdmin(id)
+        res.redirect('/chat')
+    } else {
+        res.render('rolechange', {
+            position: 'admin',
+            error: 'wrong answer',
+            userRole: req.user.is_admin
+        })
+    }
+}
+
+const getMemberForm = (req, res, next) => {
+    res.render('rolechange', {
+        position: 'member',
+        userRole: req.user.is_member
+    })
+}
+
+const postMemberForm = async (req, res, next) => {
+    const secrectAnswer = process.env.PASSCODE_MEMBER;
+    const { answer } = req.body;
+    const id = req.user.id;
+    if (answer.toLowerCase().trim() === secrectAnswer) {
+        await beMember(id)
+        res.redirect('/chat')
+    } else {
+        res.render('rolechange', {
+            position: 'member',
+            error: 'wrong answer',
+            userRole: req.user.is_member
+        })
+    }
+}
+
+
+module.exports = { getLogInControl, postLogInControl, getRegisterControl, postRegisterControl, getHomePage, getAdminForm, postAdminForm, getMemberForm, postMemberForm }

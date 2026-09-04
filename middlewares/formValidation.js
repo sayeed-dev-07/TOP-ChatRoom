@@ -1,4 +1,5 @@
 const { body } = require('express-validator');
+const { isUnique } = require('../db/query')
 
 const signUpValidator = [
     body("first_name")
@@ -23,7 +24,14 @@ const signUpValidator = [
         .notEmpty()
         .withMessage("Username can't be empty.")
         .isLength({ max: 255 })
-        .withMessage("username must be between 1 and 255 characters."),
+        .withMessage("username must be between 1 and 255 characters.")
+        .custom(async (value) => {
+            const unique = await isUnique(value);
+            if (!unique) {
+                throw new Error('This username is already in use');
+            }
+            return true;
+        }),
     body("password")
         .notEmpty()
         .withMessage("Password can't be empty.")
