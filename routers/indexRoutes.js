@@ -22,11 +22,11 @@ indexRoutes.get('/app', isLoggedIn, async (req, res) => {
         messages
     })
 })
-indexRoutes.get('/admin', getAdminForm)
-indexRoutes.post('/admin', postAdminForm)
-indexRoutes.get('/member', getMemberForm)
-indexRoutes.post('/member', postMemberForm)
-indexRoutes.get("/log-out", (req, res, next) => {
+indexRoutes.get('/admin', isLoggedIn, getAdminForm)
+indexRoutes.post('/admin', isLoggedIn, postAdminForm)
+indexRoutes.get('/member', isLoggedIn, getMemberForm)
+indexRoutes.post('/member', isLoggedIn, postMemberForm)
+indexRoutes.get("/log-out", isLoggedIn, (req, res, next) => {
     req.logout((err) => {
         if (err) {
             return next(err);

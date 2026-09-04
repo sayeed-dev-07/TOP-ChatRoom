@@ -48,4 +48,14 @@ const signUpValidator = [
         })
 ];
 
-module.exports = { signUpValidator }
+const messageValidator = [
+    body('title').trim()
+        .notEmpty().withMessage(`title can't be empty.`)
+        .isLength({ max: 255 })
+        .withMessage(`your title cant exceed 255 characters.`),
+    body('message').trim()
+        .notEmpty().withMessage(`message can't be empty.`)
+        .isLength({ max: 5000 }).withMessage("Your message is too long (max 5000 characters)."),
+]
+
+module.exports = { signUpValidator, messageValidator }

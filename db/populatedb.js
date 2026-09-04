@@ -2,25 +2,22 @@ const { Client } = require("pg");
 const { hash } = require("bcryptjs");
 
 async function main() {
-    console.log("seeding...");
+  console.log("seeding...");
 
-    const databaseUrl = process.argv[2];
+  const databaseUrl = process.argv[2];
 
-    if (!databaseUrl) {
-        console.error("Database URL is required.");
-        process.exit(1);
-    }
+  if (!databaseUrl) {
+    console.error("Database URL is required.");
+    process.exit(1);
+  }
 
-    const client = new Client({
-        connectionString: databaseUrl,
-    });
+  const client = new Client({
+    connectionString: databaseUrl,
+  });
 
-    try {
-
-        const hashedPassword = await hash("664651", 10);
-
-
-        const SEED_SQL = `
+  try {
+    const hashedPassword = await hash("664651", 10);
+    const SEED_SQL = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   username VARCHAR(255),
@@ -66,15 +63,15 @@ VALUES (
 );
 `;
 
-        await client.connect();
-        await client.query(SEED_SQL);
+    await client.connect();
+    await client.query(SEED_SQL);
 
-        console.log("done");
-    } catch (error) {
-        console.error("Error seeding database:", error);
-    } finally {
-        await client.end();
-    }
+    console.log("done");
+  } catch (error) {
+    console.error("Error seeding database:", error);
+  } finally {
+    await client.end();
+  }
 }
 
 main();

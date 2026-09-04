@@ -46,4 +46,9 @@ const deletePost = async (postId) => {
     await pool.query('DELETE FROM messages WHERE id = $1', [postId])
 }
 
-module.exports = { createUser, isUnique, getMessages, getAllMessagesWithAuthors, beAdmin, beMember, deletePost }
+const addNewMessage = async (data) => {
+    const { title, message, img_link, user_id } = data;
+    await pool.query('INSERT INTO messages(title, message, img_link, user_id) VALUES($1, $2, $3, $4)', [title, message, img_link, user_id])
+}
+
+module.exports = { createUser, isUnique, getMessages, getAllMessagesWithAuthors, beAdmin, beMember, deletePost, addNewMessage }
