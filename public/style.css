@@ -682,6 +682,9 @@
       background-color: color-mix(in oklab, var(--color-zinc-900) 10%, transparent);
     }
   }
+  .object-contain {
+    object-fit: contain;
+  }
   .object-cover {
     object-fit: cover;
   }

@@ -157,7 +157,7 @@
                                 <% if (message.img_link) { %>
 
                                     <img src="<%= message.img_link %>" alt="Attached image"
-                                        class="w-full  aspect-square object-cover transition-transform duration-700 ease-in-out <%= (user.is_member) ? 'md:group-hover:scale-105' : 'blur-xl scale-110 select-none pointer-events-none' %>">
+                                        class="w-full  aspect-square object-cover  <%= (user.is_member) ? '' : 'blur-xl  select-none pointer-events-none' %>">
 
                                     <% if (!user.is_member ) { %>
                                         <div
