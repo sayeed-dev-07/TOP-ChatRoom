@@ -59,7 +59,5 @@ indexRoutes.post('/sign-up', signUpValidator,
 
 
 
-indexRoutes.get('/:splash', (req, res, next) => {
-    res.send('nothing found')
-})
+
 module.exports = { indexRoutes }
