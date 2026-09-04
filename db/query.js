@@ -42,4 +42,8 @@ const beMember = async (userId) => {
     await pool.query('UPDATE users SET is_member = true WHERE id = $1', [userId])
 }
 
-module.exports = { createUser, isUnique, getMessages, getAllMessagesWithAuthors, beAdmin, beMember }
+const deletePost = async (postId) => {
+    await pool.query('DELETE FROM messages WHERE id = $1', [postId])
+}
+
+module.exports = { createUser, isUnique, getMessages, getAllMessagesWithAuthors, beAdmin, beMember, deletePost }

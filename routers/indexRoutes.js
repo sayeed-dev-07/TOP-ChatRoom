@@ -10,12 +10,12 @@ const indexRoutes = Router()
 // if user already logged in redirect him to main app 
 indexRoutes.get('/', (req, res, next) => {
     if (req.isAuthenticated()) {
-        return res.redirect('/chat');
+        return res.redirect('/app');
     }
     next()
 }, getHomePage);
 
-indexRoutes.get('/chat', isLoggedIn, async (req, res) => {
+indexRoutes.get('/app', isLoggedIn, async (req, res) => {
     const messages = await getAllMessagesWithAuthors()
     res.render('chat', {
         user: req.user,

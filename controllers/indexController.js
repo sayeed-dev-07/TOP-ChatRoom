@@ -18,7 +18,7 @@ const getLogInControl = async (req, res) => {
     });
 }
 const postLogInControl = passport.authenticate("local", {
-    successRedirect: "/chat",
+    successRedirect: "/app",
     failureRedirect: "/log-in",
     failureMessage: true,
 })
@@ -64,7 +64,7 @@ const postAdminForm = async (req, res, next) => {
     const id = req.user.id;
     if (answer.toLowerCase().trim() === secrectAnswer) {
         await beAdmin(id)
-        res.redirect('/chat')
+        res.redirect('/app')
     } else {
         res.render('rolechange', {
             position: 'admin',
@@ -87,7 +87,7 @@ const postMemberForm = async (req, res, next) => {
     const id = req.user.id;
     if (answer.toLowerCase().trim() === secrectAnswer) {
         await beMember(id)
-        res.redirect('/chat')
+        res.redirect('/app')
     } else {
         res.render('rolechange', {
             position: 'member',

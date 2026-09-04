@@ -4,6 +4,7 @@ const session = require("express-session");
 const passport = require("passport");
 const pgSession = require('connect-pg-simple')(session)
 const { pool } = require('./db/pool')
+const { postRouter } = require('./routers/postRoutes')
 
 require('dotenv').config()
 
@@ -40,6 +41,7 @@ const port = process.env.PORT || 5001
 
 
 app.use('/', indexRoutes)
+app.use('/app', postRouter)
 
 app.listen(port, (error) => {
     if (error) {

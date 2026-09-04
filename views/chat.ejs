@@ -128,7 +128,7 @@
                             </a>
                             <% } %>
 
-                                <a href="/new-message"
+                                <a href="/app/new-message"
                                     class=" xl:flex-none text-center bg-black text-[#FFE600] border-[3px] border-black font-mono font-black uppercase text-xs px-6 py-3 hover:bg-white hover:text-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center gap-2">
                                     <span>+</span> Drop Thought
                                 </a>
@@ -217,7 +217,7 @@
                                 </p>
                                 <div class="mt-auto pt-6 border-t-[3px] border-black flex justify-end">
 
-                                    <form action="/<%= message.id %>/delete" method="post" class="m-0">
+                                    <form action="/app/<%= message.id %>/delete" method="post" class="m-0">
 
                                         <button type="submit" <%=user.is_admin ? '' : 'disabled' %>
                                             class="font-mono text-xs font-black uppercase tracking-widest px-6 py-2
