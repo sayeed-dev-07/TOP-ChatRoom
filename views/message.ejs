@@ -90,9 +90,7 @@
                         <span class="font-brush text-5xl md:text-7xl mt-2 transform -rotate-2 text-transparent"
                             style="-webkit-text-stroke: 2px black;">Message.</span>
                     </h2>
-                    <div class="font-mono text-xs font-bold uppercase tracking-widest text-zinc-500 mt-4 md:mt-0">
-                        System Input Terminal
-                    </div>
+
                 </div>
 
                 <form action="/app/new-message" method="post" enctype="multipart/form-data"
@@ -101,7 +99,7 @@
                     <div class="flex flex-col gap-2">
                         <label for="title"
                             class="font-mono text-sm font-bold uppercase tracking-widest text-black">Enter Title</label>
-                        <input value="<%=locals.oldInput?.title || '' %>" type="text" id="title" name="title" class="w-full border-[3px] border-black p-4 text-xl font-bold bg-white focus:bg-[#FFE600]
+                        <input value="<%=locals.oldInput?.title || '' %>" type="text" id="title" name="title" class="w-full border-[3px] border-black p-3 sm:p-4 text-xl font-bold bg-white focus:bg-[#FFE600]
                         focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all
                         placeholder:text-zinc-400 font-mono" placeholder="What's on your mind?">
                         <% if (locals.errors?.title) { %>
@@ -117,7 +115,7 @@
                             class="font-mono text-sm font-bold uppercase tracking-widest text-black">Enter
                             Message</label>
                         <textarea name="message" id="message" rows="8"
-                            class="w-full border-[3px] border-black p-4 text-lg font-medium bg-white focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-400 resize-y"
+                            class="w-full border-[3px] border-black p-3 sm:p-4 text-lg font-medium bg-white focus:bg-[#FFE600] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-zinc-400 resize-y"
                             placeholder="Write your thoughts here..."><%= locals.oldInput?.message || '' %></textarea>
                         <% if (locals.errors?.message) { %>
                             <div
@@ -131,7 +129,7 @@
 
                         <% if (is_member) { %>
                             <div
-                                class="flex flex-col gap-2 p-6 border-[3px] border-black bg-zinc-200 relative h-full justify-center">
+                                class="flex flex-col gap-2 p-3 sm:p-6 border-[3px] border-black bg-zinc-200 relative h-full justify-center">
                                 <div
                                     class="absolute top-0 right-0 bg-black text-[#FFE600] font-mono text-[10px] font-bold px-2 py-1 uppercase tracking-widest border-b-[3px] border-l-[3px] border-black">
                                     Member Feature
