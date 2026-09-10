@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Club Room</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barrio&family=Outfit:wght@300;400;500;600;700&family=Permanent+Marker&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .font-brand {
+            font-family: 'Barrio', system-ui;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f4f4f5;
+            border-left: 2px solid black;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: black;
+            border: 2px solid #f4f4f5;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFE600;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-white min-h-screen w-full flex flex-col antialiased text-black selection:bg-black selection:text-white overflow-x-hidden">
+
+    <!-- Global Full-Width Header -->
+    <header class="w-full border-b-[3px] border-black  sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto min-h-[4rem] flex justify-between items-center px-4 md:px-6 py-3">
+            <div class="font-brand text-2xl font-bold tracking-widest">
+                ClubRoom
+            </div>
+            <nav class="flex gap-4">
+                <a href="/"
+                    class="font-mono text-xs font-bold px-4 py-2 border-[2px] border-black hover:bg-black hover:text-[#FFE600] uppercase tracking-widest transition-all flex items-center gap-2">
+                    <span>←</span> Home
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="w-full flex-1  py-16 sm:px-4 md:px-6 flex flex-col items-center justify-center relative">
+
+        <!-- Large Background Kanji (Error/Void) -->
+        <div
+            class="absolute text-[25rem] md:text-[35rem] font-semibold text-black opacity-[0.02] pointer-events-none select-none leading-none z-0">
+            無
+        </div>
+
+        <!-- 404 Brutalist Card Container -->
+        <div
+            class="w-full max-w-xl  sm:border-[3px] border-black p-8 md:p-12 sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative z-10 flex flex-col items-center text-center">
+
+            <div
+                class="font-mono text-xs font-semibold bg-black text-[#FFE600] px-3 py-1 uppercase tracking-widest border-[2px] border-black mb-6">
+                404
+            </div>
+
+            <h1
+                class="font-display wrap-break-word text-4xl md:text-6xl font-semibold uppercase tracking-tighter text-black mb-4 leading-none">
+                Lost <br>In Space.
+            </h1>
+
+            <p class="text-base font-medium text-zinc-600 border-l-[3px] border-[#FFE600] pl-4 max-w-md mb-8 text-left">
+                The page route you are looking for does not exist or has been removed.
+            </p>
+
+            <div class="w-full flex flex-col sm:flex-row gap-4">
+                <a href="/"
+                    class="flex-1 text-center bg-black text-[#FFE600] border-[2px] border-black font-mono font-bold uppercase text-xs py-4 hover:bg-[#FFE600] hover:text-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>←</span> Return Home
+                </a>
+                <a href="/app"
+                    class="flex-1 text-center bg-white text-black border-[2px] border-black font-mono font-bold uppercase text-xs py-4 hover:bg-black hover:text-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center justify-center gap-2">
+                    View Feed <span>→</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="w-full bg-white border-t-[3px] border-black py-6 text-center mt-auto relative z-20">
+        <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+            Created by <a target="_blank" class="text-black hover:underline"
+                href="https://github.com/sayeed-dev-07">Sayeed</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

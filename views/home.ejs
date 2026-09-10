@@ -31,99 +31,232 @@
             font-family: 'Barrio', system-ui;
         }
 
-        .font-brush {
-            font-family: 'Permanent Marker', cursive;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
 
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
+        ::-webkit-scrollbar-track {
+            background: #f4f4f5;
+            border-left: 2px solid black;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: black;
+            border: 2px solid #f4f4f5;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFE600;
         }
     </style>
 </head>
 
-
-
 <body
-    class="bg-white min-h-screen w-full sm:p-4 md:p-8 box-border flex items-center justify-center antialiased text-black overflow-x-hidden selection:bg-black selection:text-white">
+    class="bg-zinc-50 min-h-screen w-full flex flex-col antialiased text-black overflow-x-hidden selection:bg-black selection:text-white">
 
-    
-    <div
-        class="w-full max-w-[1400px] min-h-[calc(100vh-2rem)] md:min-h-[calc(100vh-4rem)] xl:h-[calc(100vh-4rem)] bg-white sm:border-[3px] border-black flex flex-col xl:flex-row sm:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative">
-
-        <div
-            class="hidden xl:flex flex-col justify-between border-r-[3px] border-black w-24 p-6 shrink-0 bg-white z-10">
-            <div class="font-mono text-sm font-bold tracking-widest">01</div>
-            <div class="flex-1 flex items-center justify-center">
-                <h1 class="font-brand vertical-text rotate-180 text-5xl font-bold whitespace-nowrap">
-                    Club Room
-                </h1>
+    <!-- Header -->
+    <header class="w-full border-b-[3px] border-black bg-white sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto h-16 flex justify-between items-center px-4 md:px-6">
+            <div class="font-brand text-2xl font-bold tracking-widest">
+                ClubRoom
             </div>
-            <div class="text-3xl font-black text-black text-center">部<br>室</div>
+            <nav class="flex gap-4">
+                <% if (locals.user) { %>
+                    <a href="/log-out"
+                        class="font-mono text-xs font-bold px-4 py-1.5 border-[2px] hover:bg-black hover:text-[#FFE600] border-black uppercase tracking-widest transition-all">Log
+                        Out</a>
+                    <% } else { %>
+                        <a href="/log-in"
+                            class="font-mono text-xs font-bold px-4 py-1.5 border-[2px] hover:bg-black hover:text-[#FFE600] border-black uppercase tracking-widest transition-all">Log
+                            In</a>
+                        <% } %>
+            </nav>
         </div>
+    </header>
 
-        <div class="flex-1 flex flex-col relative">
-            <header
-                class="h-20 border-b-[3px] border-black flex justify-between items-center px-2.5 sm:px-6 xl:px-10 shrink-0 bg-white/80 backdrop-blur-sm z-10">
-                <div class="font-brand text-2xl md:text-3xl font-bold tracking-widest">
-                    ClubRoom
+    <!-- Minimal Hero & Action Bar -->
+    <section class="w-full bg-white border-b-[3px] border-black">
+        <div class="max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16">
+
+            <h1
+                class="font-display text-4xl md:text-5xl font-semibold uppercase tracking-tighter mb-4 wrap-break-word text-black">
+                Drop your thoughts.
+            </h1>
+            <p class="text-base font-medium text-zinc-600 border-l-[3px] border-[#FFE600] pl-4 max-w-lg mb-10">
+                A simple space to share ideas and connect. Read what others are saying or leave a message of your own.
+            </p>
+
+            <!-- Status & Controls -->
+            <div
+                class="bg-zinc-100 border-[3px] border-black p-4 md:p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="flex flex-col gap-1">
+                    <% if (locals.user) { %>
+                        <div class="font-display text-xl font-bold uppercase tracking-tight">
+                            @<%= user.username || user.first_name %>
+                        </div>
+                        <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                            Role:
+                            <% if (user.is_admin) { %> <span class="text-black">Admin</span>
+                                <% } else if (user.is_member) { %> <span class="text-black">Member</span>
+                                    <% } else { %> <span class="text-black">Guest</span>
+                                        <% } %>
+                        </div>
+                        <% } else { %>
+                            <div class="font-display text-xl font-bold uppercase tracking-tight text-zinc-500">
+                                Not Logged In
+                            </div>
+                            <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                                Role: Guest
+                            </div>
+                            <% } %>
                 </div>
-                <nav class="flex gap-8">
-                    <a href="/log-in"
-                        class="font-mono text-sm font-black px-3 duration-300 ease-out py-1.5 border-2 hover:bg-black hover:text-[#FFE600] border-black uppercase tracking-widest transition-all">Log
-                        in</a>
-                </nav>
-            </header>
 
-            <main class="flex-1 p-4 md:p-8 flex flex-col justify-center py-12 xl:py-8 z-10">
-                <h2 class="flex flex-col leading-[0.85] mb-8">
-                    <span class="font-brush text-7xl md:text-[7rem] mb-2 transform -rotate-2">Drop</span>
-                    <span
-                        class="font-display text-6xl md:text-[5.5rem] font-black uppercase tracking-tighter">Your</span>
-                    <span
-                        class="font-sans text-6xl md:text-[5.5rem] font-black uppercase tracking-tighter text-transparent wrap-break-word"
-                        style="-webkit-text-stroke: 2px black;">Thoughts.</span>
-                </h2>
+                <div class="flex flex-wrap gap-3 w-full sm:w-auto">
+                    <% if (locals.user) { %>
+                        <% if (!user.is_member) { %>
+                            <a href="/member"
+                                class="text-center bg-white text-black border-[2px] border-black font-mono font-bold uppercase text-xs px-4 py-2 hover:bg-black hover:text-white transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">Be
+                                Member</a>
+                            <% } %>
+                                <% if (!user.is_admin) { %>
+                                    <a href="/admin"
+                                        class="text-center bg-white text-black border-[2px] border-black font-mono font-bold uppercase text-xs px-4 py-2 hover:bg-black hover:text-white transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">Be
+                                        Admin</a>
+                                    <% } %>
+                                        <!-- Clear and visible Write Message button -->
+                                        <a href="/app/new-message"
+                                            class="text-center bg-[#FFE600] text-black border-[2px] border-black font-mono font-bold uppercase text-xs px-6 py-2 hover:bg-black hover:text-[#FFE600] transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] flex items-center gap-2">
+                                            <span>✏️</span> Write Message
+                                        </a>
+                                        <% } else { %>
+                                            <button disabled
+                                                class="text-center bg-zinc-200 text-zinc-400 border-[2px] border-zinc-300 font-mono font-bold uppercase text-xs px-6 py-2 cursor-not-allowed flex items-center gap-2">
+                                                <span>🔒</span> Login to Post
+                                            </button>
+                                            <% } %>
+                </div>
+            </div>
 
-                <p
-                    class="max-w-sm text-sm font-medium leading-relaxed text-zinc-600 border-l-[3px] border-[#FFE600] pl-4">
-                    Drop your thoughts, ideas, and musings in our Club Room. A space where your voice matters and your
-                    ideas can flourish. Join us today and be part of a community that values creativity and expression.
-                </p>
-            </main>
         </div>
+    </section>
 
-        <div
-            class="w-full xl:w-80 flex flex-col border-t-[3px] xl:border-t-0 xl:border-l-[3px] border-black shrink-0 z-10">
-            <div class="hidden xl:flex flex-1 border-b-[3px] border-black bg-white items-end p-6">
-                <div class="font-mono w-full text-right text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-                    Created by <a target="_blank" class="font-semibold text-black"
+    <!-- Compact Feed / The Wall -->
+    <main class="w-full flex-1 bg-zinc-50 py-10 px-4 md:px-6 flex flex-col items-center">
+
+        <div class="w-full max-w-5xl flex flex-col gap-6">
+            <h3
+                class="font-mono text-sm font-bold uppercase tracking-widest text-zinc-500 border-b-[2px] border-black pb-2 mb-2">
+                Recent Messages</h3>
+
+            <% if (messages && messages.length> 0) { %>
+                <% messages.forEach(message=> { %>
+
+                    <!-- Compact Post Card -->
+                    <article
+                        class="w-full bg-white border-[3px] border-black flex flex-col sm:flex-row md:hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-shadow duration-200">
+
+                        <!-- Smaller Image Area -->
+                        <div
+                            class="w-full sm:w-[220px] aspect-video sm:aspect-auto shrink-0 border-b-[3px] sm:border-b-0 sm:border-r-[3px] border-black relative bg-zinc-100 flex items-center justify-center">
+                            <% if (message.img_link) { %>
+                                <img src="<%= message.img_link %>" alt="Post image"
+                                    class="w-full h-full sm:absolute inset-0 aspect-video sm:aspect-auto object-cover <%= (locals.user && user.is_member) ? '' : 'blur-md select-none pointer-events-none' %>">
+
+                                <% if (!(locals.user && user.is_member)) { %>
+                                    <div class="absolute inset-0 flex items-center justify-center bg-zinc-900/10 z-10">
+                                        <div
+                                            class="bg-[#FFE600] border-[2px] border-black px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-black">
+                                            Members Only
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% } else { %>
+                                            <div
+                                                class="w-full h-full min-h-[150px] flex flex-col items-center justify-center p-4 bg-zinc-50 text-zinc-300">
+                                                <div class="text-4xl mb-1">💬</div>
+                                                <div class="font-mono text-[9px] font-bold uppercase tracking-widest">No
+                                                    Image</div>
+                                            </div>
+                                            <% } %>
+                        </div>
+
+                        <!-- Compact Content Area -->
+                        <div class="flex-1 flex flex-col p-4 sm:p-6">
+                            <div class="flex flex-wrap justify-between items-start mb-2">
+                                <h4
+                                    class="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-black leading-tight">
+                                    <%= message.title %>
+                                </h4>
+                                <span
+                                    class="font-mono text-[9px] font-bold uppercase text-zinc-500 wrap-break-word sm:ml-4">
+                                    <%= message.added_at || 'Today' %>
+                                </span>
+                            </div>
+
+                            <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">
+                                By <span class="text-black">@<%= message.username %></span>
+                            </div>
+
+                            <p
+                                class="text-sm sm:text-base text-zinc-700 leading-relaxed whitespace-pre-wrap flex-grow mb-4">
+                                <%= message.message %>
+                            </p>
+
+                            <!-- Delete Button -->
+                            <% if (locals.user && user.is_admin) { %>
+                                <div class="mt-auto pt-4 border-t-[2px] border-zinc-200 flex justify-end">
+                                    <form action="/app/<%= message.id %>/delete" method="post" class="m-0">
+                                        <button type="submit"
+                                            class="font-mono text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 border-[2px] border-black bg-red-500 text-white hover:bg-black transition-colors">
+                                            Delete Post
+                                        </button>
+                                    </form>
+                                </div>
+                                <% } %>
+                        </div>
+                    </article>
+
+                    <% }) %>
+                        <% } else { %>
+                            <div class="w-full bg-white border-[3px] border-black p-10 text-center">
+                                <p class="font-mono font-bold text-sm uppercase tracking-widest text-zinc-500">The board
+                                    is empty right now.</p>
+                            </div>
+                            <% } %>
+        </div>
+    </main>
+
+    <!-- Simple Call to Action Footer (Logged Out) -->
+    <% if (!locals.user) { %>
+        <footer
+            class="w-full bg-[#FFE600] border-t-[3px] border-black py-8 sm:py-12 md:py-16 px-6 flex flex-col items-center text-center">
+            <h2 class="font-display text-3xl font-semibold uppercase tracking-tight mb-2">Join Club Room</h2>
+            <p class="font-mono text-sm font-bold max-w-[450px] w-full text-black/80 mb-6">Create an account to read and
+                share
+                your
+                own messages and become a member to see and post images</p>
+
+            <a href="/sign-up"
+                class="bg-black text-white border-[2px] border-black font-mono font-bold uppercase text-sm px-8 py-3 hover:bg-white hover:text-black transition-colors">
+                Sign Up Now
+            </a>
+
+            <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-black/50 mt-12">
+                Created by <a target="_blank" class="text-black hover:underline"
+                    href="https://github.com/sayeed-dev-07">Sayeed</a>
+            </div>
+        </footer>
+        <% } else { %>
+            <!-- Simple Footer (Logged In) -->
+            <footer class="w-full bg-white border-t-[3px] border-black py-6 text-center">
+                <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    Created by <a target="_blank" class="text-black hover:underline"
                         href="https://github.com/sayeed-dev-07">Sayeed</a>
                 </div>
-            </div>
+            </footer>
+            <% } %>
 
-            <div
-                class="h-auto border-b-[3px] xl:border-b-0 xl:h-[45%] bg-[#FFE600] p-3.5 sm:p-4 md:p-8 flex flex-col justify-between relative overflow-hidden group">
-                <div
-                    class="absolute -right-4 -bottom-8 text-8xl font-black text-black opacity-10 pointer-events-none transition-transform duration-500 group-hover:scale-110">
-                    入
-                </div>
-
-                <div>
-                    <h3 class="font-display text-3xl font-black uppercase mb-1 tracking-tight">Join</h3>
-                    <p class="font-mono text-xs font-bold uppercase tracking-wider text-black/70">Register an account
-                    </p>
-                </div>
-
-                <!-- 3. Changed mt-12 to mt-8 xl:mt-12 to save a bit of vertical space on tablets -->
-                <a href="/sign-up"
-                    class="mt-8 xl:mt-12 w-full flex items-center justify-between border-[3px] border-black px-6 py-4 bg-white hover:bg-black hover:text-[#FFE600] transition-colors duration-300 ">
-                    <span class="font-mono font-black uppercase tracking-widest text-sm">Sign Up</span>
-                    <span class="text-xl leading-none">→</span>
-                </a>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

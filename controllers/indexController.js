@@ -3,10 +3,13 @@ const passport = require("passport");
 const { createUser, beAdmin, beMember } = require('../db/query')
 const { matchedData } = require('express-validator')
 require('dotenv').config()
-
+const { getAllMessagesWithAuthors } = require('../db/query')
 
 const getHomePage = async (req, res) => {
-    res.render('home')
+    const messages = await getAllMessagesWithAuthors()
+    res.render('home', {
+        messages
+    })
 }
 
 const getLogInControl = async (req, res) => {

@@ -43,7 +43,7 @@ const port = process.env.PORT || 5001
 app.use('/', indexRoutes)
 app.use('/app', postRouter)
 app.get('/{*splat}', (req, res) => {
-    res.send('404 page didnot get the time to create the page please go back to the main routes "/"')
+    res.render('404')
 })
 
 app.listen(port, (error) => {
